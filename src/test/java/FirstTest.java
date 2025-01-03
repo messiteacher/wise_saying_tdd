@@ -51,6 +51,11 @@ public class FirstTest {
 
         String out = TestBot.run("""
                 등록
+                현재를 사랑하라.
+                작자미상
+                등록
+                과거에 집착하지 마라.
+                작자미상
                 종료
                 """);
 
@@ -60,7 +65,7 @@ public class FirstTest {
         System.out.println(count);
 
         // 검증
-        assertThat(count).isEqualTo(2);
+        assertThat(count).isEqualTo(3);
     }
 
     @Test
