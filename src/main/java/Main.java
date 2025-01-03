@@ -38,7 +38,7 @@ public class Main {
         String val3 = sc.nextLine();
         System.out.println(val3);
 
-        TestApp app = new TestApp();
+        App app = new App();
         app.run();
     }
 }

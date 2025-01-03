@@ -1,10 +1,6 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.util.Scanner;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class FirstTest {
@@ -20,7 +16,7 @@ public class FirstTest {
     @Test
     void t2() {
 
-        TestApp app = new TestApp();
+        App app = new App();
         app.run();
 
         // aaa가 출력되는가?
@@ -64,6 +60,6 @@ public class FirstTest {
         String out = TestBot.run("등록\n현재를 사랑하라.\n작자미상\n종료");
 
         assertThat(out)
-                .containsSubsequence("명언 : ", "작자 : ");
+                .containsSubsequence("명언 : ", "작가 : ");
     }
 }
