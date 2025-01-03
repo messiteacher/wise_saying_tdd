@@ -38,14 +38,34 @@ public class FirstTest {
         TestBot testBot = new TestBot();
         String out = testBot.run("");
 
-        assertThat(out).contains("명언앱을 종료합니다.");
+        assertThat(out)
+                .contains("명령 ) ")
+                .contains("명언앱을 종료합니다.");
 
         // 출력값을 체크
     }
 
     @Test
-    @DisplayName("앱 시작시 '== 명언 앱 ==' 출력")
+    @DisplayName("명령을 여러번 입력할 수 있다.")
     void t4() {
+
+        String out = TestBot.run("""
+                등록
+                종료
+                """);
+
+        // 명령 ) 횟수를 세서 검증해야 됨.
+        long count = out.split("명령 \\) ").length - 1;
+
+        System.out.println(count);
+
+        // 검증
+        assertThat(count).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("앱 시작시 '== 명언 앱 ==' 출력")
+    void t5() {
 
         String out = TestBot.run("");
 
@@ -55,7 +75,7 @@ public class FirstTest {
 
     @Test
     @DisplayName("등록 - 명언 1개 입력")
-    void t5() {
+    void t6() {
 
         String out = TestBot.run("""
                 등록
