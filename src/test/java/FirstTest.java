@@ -31,13 +31,16 @@ public class FirstTest {
     void t3() {
 
         // 테스트봇 선입력
-        Scanner sc = new Scanner("종료\n");
+//        Scanner sc = new Scanner("종료\n");
+//
+//        ByteArrayOutputStream out = new ByteArrayOutputStream();
+//        System.setOut(new PrintStream(out));
+//
+//        TestApp app = new TestApp();
+//        app.run();
 
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-
-        TestApp app = new TestApp();
-        app.run();
+        TestBot testBot = new TestBot();
+        String out = testBot.run("종료");
 
         assertThat(out.toString()).contains("명언앱을 종료합니다.");
 
@@ -49,17 +52,10 @@ public class FirstTest {
     void t4() {
 
         // 테스트봇 선입력
-        Scanner sc = new Scanner("종료\n");
-
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-
-        TestApp app = new TestApp();
-        app.run();
+        TestBot testBot = new TestBot();
+        String out = testBot.run("종료");
 
         assertThat(out.toString())
                 .containsSubsequence("== 명언 앱 ==", "명언앱을 종료합니다.");
-
-        // 출력값을 체크
     }
 }
