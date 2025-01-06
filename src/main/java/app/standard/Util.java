@@ -39,7 +39,7 @@ public class Util {
             return "";
         }
 
-        public static void write() {
+        public static void write(String file, String writeContent) {
 
         }
     }
