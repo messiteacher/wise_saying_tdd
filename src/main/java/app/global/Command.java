@@ -13,4 +13,9 @@ public class Command {
     public String getActionName() {
         return actionName;
     }
+
+    public int getParam() {
+
+        return 0;
+    }
 }
