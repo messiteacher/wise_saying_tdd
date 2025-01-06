@@ -55,5 +55,9 @@ public class Util {
                 e.printStackTrace();
             }
         }
+
+        public static void createDir(String dirPath) {
+
+        }
     }
 }
