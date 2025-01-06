@@ -1,3 +1,5 @@
+package app;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
@@ -38,7 +40,7 @@ public class Main {
         String val3 = sc.nextLine();
         System.out.println(val3);
 
-//        App app = new App();
+//        app.App app = new app.App();
 //        app.run();
     }
 }

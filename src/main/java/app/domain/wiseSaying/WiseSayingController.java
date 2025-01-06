@@ -1,4 +1,4 @@
-package domain.wiseSaying;
+package app.domain.wiseSaying;
 
 import java.util.Collections;
 import java.util.List;
@@ -50,7 +50,7 @@ public class WiseSayingController {
         boolean result = wiseSayingService.delete(id);
 
         if (!result) {
-            System.out.println("1번 명언은 존재하지 않습니다.");
+            System.out.println("%d번 명언은 존재하지 않습니다.".formatted(id));
         }
     }
 }
