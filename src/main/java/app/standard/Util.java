@@ -24,5 +24,13 @@ public class Util {
                 e.printStackTrace();
             }
         }
+
+        public static void readAsString(String file) {
+            return null;
+        }
+
+        public static void write() {
+
+        }
     }
 }
