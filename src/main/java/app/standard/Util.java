@@ -51,5 +51,10 @@ public class Util {
                 e.printStackTrace();
             }
         }
+
+        public static boolean delete(String file) {
+
+            return true;
+        }
     }
 }
