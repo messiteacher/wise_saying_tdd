@@ -52,9 +52,16 @@ public class Util {
             }
         }
 
-        public static boolean delete(String file) {
+        public static void delete(String file) {
 
-            return true;
+            Path filePath = Paths.get(file);
+
+            try {
+                Files.delete(filePath);
+            } catch (IOException e) {
+                System.out.println("파일 삭제 실패");
+                e.printStackTrace();
+            }
         }
     }
 }
