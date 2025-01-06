@@ -22,7 +22,7 @@ public class FileTest {
 
         String file = "test.txt";
 
-        Util.File.createFile();
+        Util.File.createFile(file);
 
         assertThat(Files.exists(Paths.get(file)))
                 .isTrue();
