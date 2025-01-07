@@ -3,6 +3,7 @@ package app.standard;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -30,8 +31,11 @@ public class JsonTest {
     @DisplayName("Map을 Json으로 변환2 - 속성이 2개")
     void t2() {
 
-
-        Map<String, Object> map = Map.of("name", "홍길동", "home", "서울");
+        // Map은 순서를 보장하지 않는다.
+        // 순서 보장 -> LinkedHashMap
+        Map<String, Object> map = new LinkedHashMap<>();
+        map.put("name", "홍길동");
+        map.put("home", "서울");
 
         String jsonStr = Util.Json.mapToJson(map);
 
