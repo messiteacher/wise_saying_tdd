@@ -156,7 +156,7 @@ public class Util {
         public static Map<String, Object> readAsMap(String filePath) {
 
             String jsonStr = File.readAsString(filePath);
-            return null;
+            return jsonToMap(jsonStr);
         }
 
         public static Map<String, Object> jsonToMap(String jsonStr) {
