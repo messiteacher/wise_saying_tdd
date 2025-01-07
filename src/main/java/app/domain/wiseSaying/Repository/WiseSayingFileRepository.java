@@ -30,7 +30,7 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
     }
 
     public boolean deleteById(int id) {
-        return wiseSayingList.removeIf(w -> w.getId() == id); // 삭제 성공 : true, 삭제 실패 : false
+        return Util.File.delete("db/wiseSaying/%d.json".formatted(id));
     }
 
     public Optional<WiseSaying> findById(int id) {

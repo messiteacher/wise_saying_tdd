@@ -43,7 +43,10 @@ public class WiseSayingFileRepositoryTest {
 
         String filePath = "db/wiseSaying/1.json";
 
+        boolean delRst = wiseSayingRepository.deleteById(1);
+
         boolean rst = Files.exists(Path.of(filePath));
         assertThat(rst).isFalse();
+        assertThat(delRst).isTrue();
     }
 }
