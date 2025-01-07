@@ -48,6 +48,8 @@ public class Util {
 
             Path filePath = Paths.get(file);
 
+            if (!Files.exists(filePath)) return ;
+
             try {
                 Files.delete(filePath);
             } catch (IOException e) {
