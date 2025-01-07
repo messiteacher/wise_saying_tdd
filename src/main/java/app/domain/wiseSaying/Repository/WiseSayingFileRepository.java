@@ -3,6 +3,7 @@ package app.domain.wiseSaying.Repository;
 import app.domain.wiseSaying.WiseSaying;
 import app.standard.Util;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -27,9 +28,11 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
 
     public List<WiseSaying> findAll() {
 
-//        Util.File.getPaths();
-
-        return null;
+        return Util.File.getPaths(DB_PATH).stream()
+                .map(Path::toString)
+                .map(Util.Json::readAsMap)
+                .map(WiseSaying::fromMap)
+                .toList();
     }
 
     public boolean deleteById(int id) {
