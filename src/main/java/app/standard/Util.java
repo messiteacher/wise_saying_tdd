@@ -106,8 +106,17 @@ public class Util {
 
     public class Json {
 
-        public static void mapToJson(Map<String, Object> map) {
+        public static String mapToJson(Map<String, Object> map) {
 
+            String tmp = "";
+
+            for (String key : map.keySet()) {
+                String value = (String)map.get(key);
+                tmp = "{\n" + "    \"%s\" : " + "\"%s\"" + "\n}";
+                tmp = tmp.formatted(key, value);
+            }
+
+            return tmp;
         }
     }
 }
