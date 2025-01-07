@@ -38,7 +38,7 @@ public class JsonTest {
         assertThat(jsonStr)
                 .isEqualTo("""
                         {
-                            "name" : "홍길동"
+                            "name" : "홍길동",
                             "home" : "서울"
                         }
                         """.stripIndent().trim());
