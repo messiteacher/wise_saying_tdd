@@ -164,12 +164,14 @@ public class FileTest {
         assertThat(Files.exists(Paths.get(path3)))
                 .isTrue();
 
-        List<Path> paths = Util.File.getpaths();
+
+        List<Path> paths = Util.File.getPaths("test/");
 
         assertThat(paths)
                 .hasSize(3)
                 .contains(Paths.get(path1))
                 .contains(Paths.get(path2))
                 .contains(Paths.get(path3));
+
     }
 }
