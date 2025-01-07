@@ -65,7 +65,7 @@ public class WiseSayingFileRepositoryTest {
         WiseSaying wiseSaying = new WiseSaying(1, "aaa", "bbb");
         wiseSayingRepository.save(wiseSaying);
 
-        String filePath = "db/test/wiseSaying/1.json";
+        assertThat(Files.exists(Path.of("db/test/wiseSaying/1.json"))).isTrue();
 
         Optional<WiseSaying> opWiseSaying = wiseSayingRepository.findById(1);
         WiseSaying foundWiseSaying = opWiseSaying.orElse(null);
