@@ -42,4 +42,7 @@ bin/
 .DS_Store
 
 ### test ###
-/test/
+test/
+
+### src/test/ 폴더는 무시하지 않음 ###
+!src/test/

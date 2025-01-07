@@ -3,6 +3,8 @@ package app.domain.wiseSaying.repository;
 import app.domain.wiseSaying.Repository.WiseSayingFileRepository;
 import app.domain.wiseSaying.WiseSaying;
 import app.standard.Util;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,6 +18,11 @@ public class WiseSayingFileRepositoryTest {
 
     WiseSayingFileRepository wiseSayingRepository = new WiseSayingFileRepository();
 
+    @AfterAll
+    static void afterAll() {
+       Util.File.deleteForce("db/test");
+    }
+
     @Test
     @DisplayName("명언 저장")
     void t1() {
@@ -23,7 +30,7 @@ public class WiseSayingFileRepositoryTest {
         WiseSaying wiseSaying = new WiseSaying(1, "aaa", "bbb");
         wiseSayingRepository.save(wiseSaying);
 
-        String filePath = "db/wiseSaying/1.json";
+        String filePath = "db/test/wiseSaying/1.json";
 
         boolean rst = Files.exists(Path.of(filePath));
         assertThat(rst).isTrue();
@@ -41,7 +48,7 @@ public class WiseSayingFileRepositoryTest {
         WiseSaying wiseSaying = new WiseSaying(1, "aaa", "bbb");
         wiseSayingRepository.save(wiseSaying);
 
-        String filePath = "db/wiseSaying/1.json";
+        String filePath = "db/test/wiseSaying/1.json";
 
         boolean delRst = wiseSayingRepository.deleteById(1);
 
