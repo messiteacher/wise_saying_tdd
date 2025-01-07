@@ -5,6 +5,7 @@ import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -108,6 +109,10 @@ public class Util {
             } catch (IOException e) {
                 System.err.println("폴더 삭제 중 오류 발생: " + e.getMessage());
             }
+        }
+
+        public List<Path> getpaths() {
+            return null;
         }
     }
 

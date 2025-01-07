@@ -12,11 +12,8 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
 
     private static final String DB_PATH = "db/test/wiseSaying/";
 
-    private final List<WiseSaying> wiseSayingList;
-    private int lastId;
-
     public WiseSayingFileRepository() {
-        wiseSayingList = new ArrayList<>();
+//        wiseSayingList = new ArrayList<>();
         System.out.println("파일 DB 사용");
     }
 
@@ -29,7 +26,10 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
     }
 
     public List<WiseSaying> findAll() {
-        return wiseSayingList;
+
+//        Util.File.getPaths();
+
+        return null;
     }
 
     public boolean deleteById(int id) {
