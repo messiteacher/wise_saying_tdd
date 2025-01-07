@@ -114,9 +114,18 @@ public class Util {
 
             int i = 0;
             for (String key : map.keySet()) {
-                String value = (String)map.get(key);
-                String tmp = "    \"%s\" : " + "\"%s\"";
-                jsonBuilder.append(tmp.formatted(key, value));
+
+                Object obj = map.get(key);
+
+                if (obj instanceof String) {
+                    String value = (String)map.get(key);
+                    String tmp = "    \"%s\" : " + "\"%s\"";
+                    jsonBuilder.append(tmp.formatted(key, value));
+                } else if (obj instanceof Integer) {
+                    int value = (int)map.get(key);
+                    String tmp = "    \"%s\" : " + "%d";
+                    jsonBuilder.append(tmp.formatted(key, value));
+                }
 
                 if (i == map.size() - 1) break;
                 jsonBuilder.append(",\n");
