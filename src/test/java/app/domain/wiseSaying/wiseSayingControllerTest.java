@@ -1,5 +1,6 @@
 package app.domain.wiseSaying;
 
+import app.global.AppConfig;
 import app.standard.TestBot;
 import app.standard.Util;
 import org.junit.jupiter.api.*;
@@ -8,16 +9,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class wiseSayingControllerTest {
 
+    @BeforeAll
+    static void beforeAll() {
+        AppConfig.setTestMode();
+    }
+
     @BeforeEach
     void before() {
-        Util.File.deleteForce("db/test");
-        Util.File.deleteForce("test");
+        Util.File.deleteForce(AppConfig.getDBPath());
     }
 
     @AfterEach
     void after() {
-        Util.File.deleteForce("db/test");
-        Util.File.deleteForce("test");
+        Util.File.deleteForce(AppConfig.getDBPath());
     }
 
     @Test
