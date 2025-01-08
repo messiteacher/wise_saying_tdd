@@ -81,4 +81,8 @@ public class WiseSayingController {
 
         System.out.println("%d번 명언이 수정되었습니다.".formatted(wiseSaying.getId()));
     }
+
+    public void actionBuild() {
+        wiseSayingService.build();
+    }
 }
