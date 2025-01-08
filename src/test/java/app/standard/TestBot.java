@@ -20,4 +20,9 @@ public class TestBot {
 
         return out.toString();
     }
+
+    public static void makeSample(int cnt) {
+
+
+    }
 }
