@@ -1,5 +1,6 @@
 package app.domain.wiseSaying.Repository;
 
+import app.domain.wiseSaying.Page;
 import app.domain.wiseSaying.WiseSaying;
 
 import java.util.List;
@@ -9,7 +10,7 @@ public interface WiseSayingRepository {
 
     WiseSaying save(WiseSaying wiseSaying);
 
-    List<WiseSaying> findAll();
+    Page findAll();
 
     boolean deleteById(int id);
 

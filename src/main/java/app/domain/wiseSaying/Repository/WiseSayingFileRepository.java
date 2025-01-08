@@ -1,5 +1,6 @@
 package app.domain.wiseSaying.Repository;
 
+import app.domain.wiseSaying.Page;
 import app.domain.wiseSaying.WiseSaying;
 import app.global.AppConfig;
 import app.standard.Util;
@@ -42,16 +43,20 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
         return wiseSaying;
     }
 
-    public List<WiseSaying> findAll() {
+    public Page findAll() {
 
-        return new ArrayList<>(
-                Util.File.getPaths(DB_PATH).stream()
-                        .map(Path::toString)
-                        .filter(path -> path.endsWith(".json"))
-                        .map(Util.Json::readAsMap)
-                        .map(WiseSaying::fromMap)
-                        .toList()
-        );
+        int itemsPerPage = 5;
+
+        List<WiseSaying> wiseSayings = Util.File.getPaths(DB_PATH).stream()
+                .map(Path::toString)
+                .filter(path -> path.endsWith(".json"))
+                .map(Util.Json::readAsMap)
+                .map(WiseSaying::fromMap)
+                .toList();
+
+        int totalPages = (int) Math.ceil((double) wiseSayings.size() / itemsPerPage);
+
+        return new Page(wiseSayings, totalPages, wiseSayings.size());
     }
 
     public boolean deleteById(int id) {
@@ -90,7 +95,7 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
 
     public void build() {
 
-        List<Map<String, Object>> mapList = findAll().stream()
+        List<Map<String, Object>> mapList = findAll().getWiseSayings().stream()
                 .map(WiseSaying::toMap)
                 .toList();
 
@@ -114,6 +119,6 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
     }
 
     public int count() {
-        return findAll().size();
+        return findAll().getWiseSayings().size();
     }
 }
