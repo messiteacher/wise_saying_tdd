@@ -4,8 +4,11 @@ public class AppConfig {
 
     private static String mode;
 
+    private static String dbMode;
+
     static {
         setDevMode();
+        setFileDb();
     }
 
     public static void setProdMode() {
@@ -30,6 +33,22 @@ public class AppConfig {
 
     public static boolean isTestMode() {
         return mode.equals("test");
+    }
+
+    public static void setFileDb() {
+        dbMode = "file";
+    }
+
+    public static void setMemDbe() {
+        dbMode = "mem";
+    }
+
+    public static boolean isFileDb() {
+        return dbMode.equals("file");
+    }
+
+    public static boolean isMemDb() {
+        return dbMode.equals("mem");
     }
 
     public static String getDBPath() {
