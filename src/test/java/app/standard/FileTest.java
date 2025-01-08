@@ -12,19 +12,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class FileTest {
 
     // 3. 테스트 시작 전에 test 폴더 생성
-    @BeforeAll
-    static void beforeAll() {
-        System.out.println("테스트 실행 전에 한번 실행");
+    @BeforeEach
+    void beforeEach() {
+        System.out.println("각 테스트 실행 전에 한번 실행");
         Util.File.createDir("test");
     }
 
-    @AfterAll
-    static void afterAll() {
-        System.out.println("테스트 실행 후에 한번 실행");
+    @AfterEach
+    void afterEach() {
+        System.out.println("각 테스트 실행 후에 한번 실행");
         Util.File.delete("test");
     }
-
-    // 4. 테스트 종료 후에 test 폴더 삭제
 
     @Test
     @DisplayName("최초의 파일 테스트")
