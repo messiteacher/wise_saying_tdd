@@ -194,6 +194,7 @@ public class JsonTest {
 
         assertThat(jsonStr)
                 .isEqualTo("""
+                        [
                             {
                                 "id" : 1,
                                 "content" : "aaa",
@@ -204,8 +205,7 @@ public class JsonTest {
                                 "content" : "ccc",
                                 "author" : "ddd"
                             }
-                        ][
-                        
+                        ]
                         """.stripIndent().trim());
     }
 }
