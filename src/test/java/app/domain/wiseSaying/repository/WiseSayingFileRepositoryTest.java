@@ -95,13 +95,13 @@ public class WiseSayingFileRepositoryTest {
         assertThat(wiseSayings).contains(wiseSaying1, wiseSaying2, wiseSaying3);
     }
 
-//    @Test
-//    @DisplayName("lastId 가져오기")
-//    void t5() {
-//
-//        WiseSaying wiseSaying = new WiseSaying("aaa1", "bbb1");
-//        int lastId = wiseSayingRepository.getLastId();
-//
-//        assertThat(lastId).isEqualTo(wiseSaying.getId());
-//    }
+    @Test
+    @DisplayName("lastId 가져오기")
+    void t5() {
+
+        WiseSaying wiseSaying = new WiseSaying("aaa1", "bbb1");
+        int lastId = wiseSayingRepository.getLastId();
+
+        assertThat(lastId).isEqualTo(wiseSaying.getId());
+    }
 }
