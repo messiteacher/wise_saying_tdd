@@ -112,4 +112,8 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
 
         return BUILD_PATH;
     }
+
+    public int count() {
+        return findAll().size();
+    }
 }
