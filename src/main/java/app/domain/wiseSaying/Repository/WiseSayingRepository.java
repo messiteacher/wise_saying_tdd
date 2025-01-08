@@ -18,4 +18,6 @@ public interface WiseSayingRepository {
     void build();
 
     void makeSampleData(int cnt);
+
+    int count();
 }

@@ -63,7 +63,11 @@ public class WiseSayingController {
 
     private void printPage(int page) {
 
-        for (int i = 1; i <= 2; i++) {
+        int totalItems = wiseSayingService.count();
+        int itemsPerPage = 5;
+        int totalPages = (int) Math.ceil((double) totalItems / itemsPerPage);
+
+        for (int i = 1; i <= totalPages; i++) {
 
             if (i == page) {
                 System.out.print("[%d]".formatted(i));
@@ -71,7 +75,7 @@ public class WiseSayingController {
                 System.out.print("%d".formatted(i));
             }
 
-            if (i == 2) {
+            if (i == totalPages) {
                 System.out.println();
                 break;
             }
