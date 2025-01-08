@@ -15,6 +15,10 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
 
     public WiseSayingFileRepository() {
         System.out.println("파일 DB 사용");
+        lastIdInit();
+    }
+
+    public void lastIdInit() {
         if (!Util.File.exists(DB_PATH + "lastId.txt")) {
             Util.File.createFile(DB_PATH + "lastId.txt");
         }
