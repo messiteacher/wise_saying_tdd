@@ -206,6 +206,6 @@ public class JsonTest {
                                 "author" : "ddd"
                             }
                         ]
-                        """);
+                        """.stripIndent().trim());
     }
 }
