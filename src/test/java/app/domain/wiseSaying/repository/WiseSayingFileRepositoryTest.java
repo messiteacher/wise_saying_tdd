@@ -20,11 +20,13 @@ public class WiseSayingFileRepositoryTest {
     @BeforeEach
     void beforeEach() {
         Util.File.deleteForce("db/test");
+        Util.File.deleteForce("test");
     }
 
     @AfterEach
     void afterEach() {
        Util.File.deleteForce("db/test");
+       Util.File.deleteForce("test");
     }
 
     @Test
@@ -99,9 +101,14 @@ public class WiseSayingFileRepositoryTest {
     @DisplayName("lastId 가져오기")
     void t5() {
 
-        WiseSaying wiseSaying = new WiseSaying("aaa1", "bbb1");
+        WiseSaying wiseSaying1 = new WiseSaying("aaa1", "bbb1");
+        wiseSayingRepository.save(wiseSaying1);
+
+        WiseSaying wiseSaying2 = new WiseSaying("aaa1", "bbb1");
+        wiseSayingRepository.save(wiseSaying2);
+
         int lastId = wiseSayingRepository.getLastId();
 
-        assertThat(lastId).isEqualTo(wiseSaying.getId());
+        assertThat(lastId).isEqualTo(wiseSaying2.getId());
     }
 }

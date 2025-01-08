@@ -11,11 +11,13 @@ public class wiseSayingControllerTest {
     @BeforeEach
     void before() {
         Util.File.deleteForce("db/test");
+        Util.File.deleteForce("test");
     }
 
     @AfterEach
     void after() {
         Util.File.deleteForce("db/test");
+        Util.File.deleteForce("test");
     }
 
     @Test
