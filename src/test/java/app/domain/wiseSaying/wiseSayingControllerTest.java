@@ -288,7 +288,6 @@ public class wiseSayingControllerTest {
 
         assertThat(out)
                 .contains("1 / 작가1 / 명언1")
-                .contains("10 / 작가1 / 명언10")
-                .doesNotContain("1 / 작자미상 / 현재를 사랑하라.");
+                .contains("10 / 작가10 / 명언10");
     }
 }

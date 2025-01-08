@@ -54,4 +54,8 @@ public class WiseSayingService {
                 })
                 .collect(Collectors.toList());
     }
+
+    public void makeSampleData(int cnt) {
+        wiseSayingRepository.makeSampleData(cnt);
+    }
 }
