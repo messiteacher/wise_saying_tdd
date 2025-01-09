@@ -54,16 +54,16 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
                 .collect(Collectors.toList());
     }
 
-    public Page findAll(int itemsPerPage) {
+    public Page findAll(int itemsPerPage, int page) {
 
-        List<WiseSaying> wiseSayings = Util.File.getPaths(DB_PATH).stream()
-                .map(Path::toString)
-                .filter(path -> path.endsWith(".json"))
-                .map(Util.Json::readAsMap)
-                .map(WiseSaying::fromMap)
-                .collect(Collectors.toList());
+        List<WiseSaying> wiseSayings = findAll();
 
-        return new Page(wiseSayings, wiseSayings.size(), itemsPerPage);
+        List<WiseSaying> pageContent = wiseSayings.stream()
+                .skip((long) (page - 1) * itemsPerPage)
+                .limit(itemsPerPage)
+                .toList();
+
+        return new Page(pageContent, wiseSayings.size(), itemsPerPage);
     }
 
     public boolean deleteById(int id) {
