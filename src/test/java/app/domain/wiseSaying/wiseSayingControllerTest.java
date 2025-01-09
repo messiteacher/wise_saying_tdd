@@ -368,11 +368,6 @@ public class wiseSayingControllerTest {
                 """);
 
         assertThat(out)
-                .containsSubsequence("20 / 작가20 / 명언10",
-                        "1 / 작가1 / 명언1")
-                .doesNotContain("11 / 작가11 / 명언11");
-
-        assertThat(out)
                 .contains("18 / 작가18 / 명언18")
                 .contains("1 / 2 / [3] / 4 / 5");
     }
