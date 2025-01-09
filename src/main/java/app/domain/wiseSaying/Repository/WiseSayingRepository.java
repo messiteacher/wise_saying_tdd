@@ -10,7 +10,7 @@ public interface WiseSayingRepository {
 
     WiseSaying save(WiseSaying wiseSaying);
 
-    Page findAll();
+    Page findAll(int itempPerPage);
 
     boolean deleteById(int id);
 

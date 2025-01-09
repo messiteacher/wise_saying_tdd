@@ -11,6 +11,7 @@ public class WiseSayingController {
 
     private final Scanner sc;
     private final WiseSayingService wiseSayingService;
+    private int itemsPerPage = 5;
 
     public WiseSayingController(Scanner sc) {
         this.sc = sc;
@@ -38,14 +39,14 @@ public class WiseSayingController {
 
         List<WiseSaying> wiseSayingList;
 
-        Page pageContent = wiseSayingService.getAllItems();
+        Page pageContent = wiseSayingService.getAllItems(itemsPerPage);
 
         if (command.isSearchCommand()) {
 
             String ktype = command.getParam("keywordType");
             String kw = command.getParam("keyword");
 
-            wiseSayingList = wiseSayingService.search(ktype, kw);
+            wiseSayingList = wiseSayingService.search(ktype, kw, itemsPerPage);
         } else {
             wiseSayingList = pageContent.getWiseSayings();
         }

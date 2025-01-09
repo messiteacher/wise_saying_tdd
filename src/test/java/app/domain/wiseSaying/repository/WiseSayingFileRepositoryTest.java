@@ -96,7 +96,7 @@ public class WiseSayingFileRepositoryTest {
         wiseSayingRepository.save(wiseSaying2);
         wiseSayingRepository.save(wiseSaying3);
 
-        List<WiseSaying> wiseSayings = wiseSayingRepository.findAll().getWiseSayings();
+        List<WiseSaying> wiseSayings = wiseSayingRepository.findAll();
 
         assertThat(wiseSayings).hasSize(3);
         assertThat(wiseSayings).contains(wiseSaying1, wiseSaying2, wiseSaying3);
@@ -178,7 +178,8 @@ public class WiseSayingFileRepositoryTest {
         wiseSayingRepository.save(wiseSaying3);
 
         // [List<WiseSaying> wiseSayings, totalItems, totalPages, page]= wiseSayingRepository.findAll();
-        Page pageContent = wiseSayingRepository.findAll();
+        int itemsPerPage = 5;
+        Page pageContent = wiseSayingRepository.findAll(itemsPerPage);
 
         List<WiseSaying> wiseSayings = pageContent.getWiseSayings();
         int totalItems = pageContent.getTotalItems();

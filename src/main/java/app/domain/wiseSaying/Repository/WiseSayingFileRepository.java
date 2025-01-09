@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class WiseSayingFileRepository implements WiseSayingRepository {
 
@@ -43,16 +44,24 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
         return wiseSaying;
     }
 
-    public Page findAll() {
+    public List<WiseSaying> findAll() {
 
-        int itemsPerPage = 5;
+        return Util.File.getPaths(DB_PATH).stream()
+                .map(Path::toString)
+                .filter(path -> path.endsWith(".json"))
+                .map(Util.Json::readAsMap)
+                .map(WiseSaying::fromMap)
+                .collect(Collectors.toList());
+    }
+
+    public Page findAll(int itemsPerPage) {
 
         List<WiseSaying> wiseSayings = Util.File.getPaths(DB_PATH).stream()
                 .map(Path::toString)
                 .filter(path -> path.endsWith(".json"))
                 .map(Util.Json::readAsMap)
                 .map(WiseSaying::fromMap)
-                .toList();
+                .collect(Collectors.toList());
 
         return new Page(wiseSayings, wiseSayings.size(), itemsPerPage);
     }
@@ -93,7 +102,7 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
 
     public void build() {
 
-        List<Map<String, Object>> mapList = findAll().getWiseSayings().stream()
+        List<Map<String, Object>> mapList = findAll().stream()
                 .map(WiseSaying::toMap)
                 .toList();
 
@@ -117,6 +126,6 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
     }
 
     public int count() {
-        return findAll().getWiseSayings().size();
+        return findAll().size();
     }
 }
