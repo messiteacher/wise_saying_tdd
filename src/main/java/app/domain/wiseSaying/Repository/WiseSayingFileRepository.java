@@ -59,11 +59,7 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
                     else return w.getAuthor().contains(kw);
                 })
                 .sorted(Comparator.comparing(WiseSaying::getId).reversed())
-                .skip((long) (page - 1) * itemsPerPage)
-                .limit(itemsPerPage)
                 .toList();
-
-        System.out.println("Filtered Results: " + searchedWiseSayings);
 
         return pageOf(searchedWiseSayings, itemsPerPage, page);
     }

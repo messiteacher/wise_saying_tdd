@@ -328,8 +328,6 @@ public class wiseSayingControllerTest {
                 목록?keywordType=content&keyword=1
                 """);
 
-        System.out.println("Test output:\n" + out);
-
         assertThat(out)
                 .containsSubsequence("15 / 작가15 / 명언15", "14 / 작가14 / 명언14")
                 .doesNotContain("10 / 작가10 / 명언10");
@@ -370,5 +368,26 @@ public class wiseSayingControllerTest {
         assertThat(out)
                 .contains("18 / 작가18 / 명언18")
                 .contains("1 / 2 / [3] / 4 / 5");
+    }
+
+    @Test
+    @DisplayName("검색 UI 출력")
+    void t22() {
+
+        TestBot.makeSample(30);
+
+        String out = TestBot.run("""
+                등록
+                현재를 사랑하라.
+                작자미상
+                등록
+                과거에 집착하지 마라.
+                작자미상
+                목록?keywordType=content&keyword=과거
+                """);
+
+        assertThat(out)
+                .contains("검색타입 : content")
+                .contains("검색어 : 과거");
     }
 }
