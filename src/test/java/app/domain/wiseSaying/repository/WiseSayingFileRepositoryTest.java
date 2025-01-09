@@ -179,10 +179,9 @@ public class WiseSayingFileRepositoryTest {
 
         // [List<WiseSaying> wiseSayings, totalItems, totalPages, page]= wiseSayingRepository.findAll();
         int itemsPerPage = 5;
-        int page = 1;
-        Page pageContent = wiseSayingRepository.findAll(itemsPerPage, page);
+        Page pageContent = wiseSayingRepository.findAll(itemsPerPage, 1);
 
-        List<WiseSaying> wiseSayings = pageContent.getWiseSayings();
+        List<WiseSaying> wiseSayings = pageContent.getContent();
         int totalItems = pageContent.getTotalItems();
         int totalPages = pageContent.getTotalPages();
 

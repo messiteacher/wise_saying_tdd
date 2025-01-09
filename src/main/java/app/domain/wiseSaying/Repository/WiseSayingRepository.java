@@ -10,7 +10,7 @@ public interface WiseSayingRepository {
 
     WiseSaying save(WiseSaying wiseSaying);
 
-    Page findAll(int itempPerPage, int page);
+    Page<WiseSaying> findAll(int itemPerPage, int page);
 
     boolean deleteById(int id);
 
@@ -22,5 +22,5 @@ public interface WiseSayingRepository {
 
     int count();
 
-    Page findByKeyword(String ktype, String kw, int itemsPerPage, int page);
+    Page<WiseSaying> findByKeyword(String ktype, String kw, int itemsPerPage, int page);
 }

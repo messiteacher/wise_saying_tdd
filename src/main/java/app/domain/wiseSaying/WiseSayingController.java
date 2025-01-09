@@ -37,7 +37,7 @@ public class WiseSayingController {
         System.out.println("----------------------");
 
         int page = command.getParamAsInt("page", 1);
-        Page pageContent;
+        Page<WiseSaying> pageContent;
 
         if(command.isSearchCommand()) {
 
@@ -49,12 +49,12 @@ public class WiseSayingController {
             pageContent = wiseSayingService.getAllItems(itemsPerPage, page);
         }
 
-        if(pageContent.getWiseSayings().isEmpty()) {
+        if(pageContent.getContent().isEmpty()) {
             System.out.println("등록된 명언이 없습니다.");
             return;
         }
 
-        pageContent.getWiseSayings().forEach(w -> {
+        pageContent.getContent().forEach(w -> {
             System.out.printf("%d / %s / %s\n", w.getId(), w.getAuthor(), w.getContent());
         });
 

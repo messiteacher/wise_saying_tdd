@@ -328,13 +328,15 @@ public class wiseSayingControllerTest {
                 목록?keywordType=content&keyword=1
                 """);
 
+        System.out.println("Test output:\n" + out);
+
         assertThat(out)
-                .containsSubsequence("15 / 작가15 / 명언15",
-                        "14 / 작가14 / 명언14")
+                .containsSubsequence("15 / 작가15 / 명언15", "14 / 작가14 / 명언14")
                 .doesNotContain("10 / 작가10 / 명언10");
 
         assertThat(out)
                 .contains("[1] / 2");
+
     }
 
     @Test
@@ -348,8 +350,7 @@ public class wiseSayingControllerTest {
                 """);
 
         assertThat(out)
-                .containsSubsequence("10 / 작가10 / 명언10",
-                        "1 / 작가1 / 명언1")
+                .containsSubsequence("10 / 작가10 / 명언10", "1 / 작가1 / 명언1")
                 .doesNotContain("11 / 작가11 / 명언11");
 
         assertThat(out)

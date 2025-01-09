@@ -48,7 +48,7 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
                 .filter(path -> path.endsWith(".json"))
                 .map(Util.Json::readAsMap)
                 .map(WiseSaying::fromMap)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public Page findByKeyword(String ktype, String kw, int itemsPerPage, int page) {
@@ -61,21 +61,23 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
                 .sorted(Comparator.comparing(WiseSaying::getId).reversed())
                 .skip((long) (page - 1) * itemsPerPage)
                 .limit(itemsPerPage)
-                .collect(Collectors.toList());;
+                .toList();
+
+        System.out.println("Filtered Results: " + searchedWiseSayings);
 
         return pageOf(searchedWiseSayings, itemsPerPage, page);
     }
 
-    public Page findAll(int itemsPerPage, int page) {
+    public Page<WiseSaying> findAll(int itemsPerPage, int page) {
 
         List<WiseSaying> sortedWiseSayings = findAll().stream()
                 .sorted(Comparator.comparing(WiseSaying::getId).reversed())
-                .collect(Collectors.toList());
+                .toList();
 
         return pageOf(sortedWiseSayings, itemsPerPage, page);
     }
 
-    private Page pageOf(List<WiseSaying> wiseSayings, int itemsPerPage, int page) {
+    private Page<WiseSaying> pageOf(List<WiseSaying> wiseSayings, int itemsPerPage, int page) {
 
         int totalItems = wiseSayings.size();
 
