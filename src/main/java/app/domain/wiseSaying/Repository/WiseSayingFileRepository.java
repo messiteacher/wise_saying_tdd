@@ -6,10 +6,7 @@ import app.global.AppConfig;
 import app.standard.Util;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class WiseSayingFileRepository implements WiseSayingRepository {
@@ -45,13 +42,32 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
     }
 
     public List<WiseSaying> findAll() {
-
         return Util.File.getPaths(DB_PATH).stream()
                 .map(Path::toString)
                 .filter(path -> path.endsWith(".json"))
                 .map(Util.Json::readAsMap)
                 .map(WiseSaying::fromMap)
-                .collect(Collectors.toList());
+                .toList();
+
+    }
+
+    public Page findByKeyword(String ktype, String kw, int itemsPerPage, int page) {
+
+        List<WiseSaying> searchedWiseSayings = findAll().stream()
+                .filter(w -> {
+                    if (ktype.equals("content")) return w.getContent().contains(kw);
+                    else return w.getAuthor().contains(kw);
+                })
+                .toList();
+        int totalItems = searchedWiseSayings.size();
+
+        List<WiseSaying> searchedResult = searchedWiseSayings.stream()
+                .sorted(Comparator.comparing(WiseSaying::getId).reversed())
+                .skip((long) (page - 1) * itemsPerPage)
+                .limit(itemsPerPage)
+                .collect(Collectors.toList());;
+
+        return new Page(searchedResult, totalItems, itemsPerPage);
     }
 
     public Page findAll(int itemsPerPage, int page) {

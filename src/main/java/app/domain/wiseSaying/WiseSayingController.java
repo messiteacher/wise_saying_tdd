@@ -11,11 +11,12 @@ public class WiseSayingController {
 
     private final Scanner sc;
     private final WiseSayingService wiseSayingService;
-    private int itemsPerPage = 5;
+    private int itemsPerPage;
 
     public WiseSayingController(Scanner sc) {
         this.sc = sc;
         wiseSayingService = new WiseSayingService();
+        this.itemsPerPage = 5;
     }
 
     public void actionWrite() {
@@ -36,28 +37,24 @@ public class WiseSayingController {
         System.out.println("----------------------");
 
         int page = command.getParamAsInt("page", 1);
+        Page pageContent;
 
-        List<WiseSaying> wiseSayingList;
-
-        Page pageContent = wiseSayingService.getAllItems(itemsPerPage, page);
-
-        if (command.isSearchCommand()) {
+        if(command.isSearchCommand()) {
 
             String ktype = command.getParam("keywordType");
             String kw = command.getParam("keyword");
 
-            wiseSayingList = wiseSayingService.search(ktype, kw, itemsPerPage, page);
+            pageContent = wiseSayingService.search(ktype, kw, itemsPerPage, page);
         } else {
-            wiseSayingList = pageContent.getWiseSayings();
+            pageContent = wiseSayingService.getAllItems(itemsPerPage, page);
         }
 
-        if (wiseSayingList.isEmpty()) {
+        if(pageContent.getWiseSayings().isEmpty()) {
             System.out.println("등록된 명언이 없습니다.");
-            return ;
+            return;
         }
 
-        Collections.reverse(wiseSayingList);
-        wiseSayingList.forEach(w -> {
+        pageContent.getWiseSayings().forEach(w -> {
             System.out.printf("%d / %s / %s\n", w.getId(), w.getAuthor(), w.getContent());
         });
 
