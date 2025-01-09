@@ -82,7 +82,7 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
                 .limit(itemsPerPage)
                 .collect(Collectors.toList());
 
-        return new Page(pageContent, totalItems, itemsPerPage);
+        return new Page<>(pageContent, totalItems, itemsPerPage, page);
     }
 
     public boolean deleteById(int id) {
