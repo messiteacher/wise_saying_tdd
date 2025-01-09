@@ -60,7 +60,7 @@ public class WiseSayingController {
             System.out.printf("%d / %s / %s\n", w.getId(), w.getAuthor(), w.getContent());
         });
 
-        printPage(page, pageContent.totalPages);
+        printPage(page, pageContent.getTotalPages());
     }
 
     private void printPage(int page, int totalPages) {
