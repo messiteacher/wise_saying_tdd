@@ -61,7 +61,11 @@ public class SimpleDb {
     }
 
     public <T> T selectRow(String sql, List<Object> params, Class<T> cls) {
-        return selectRows(sql, params, cls).get(0);
+
+        List<T> rows = selectRows(sql, params, cls);
+        if (rows.isEmpty()) return null;
+
+        return rows.get(0);
     }
 
     public List<Map<String, Object>> selectRows(String sql, List<Object> params) {
@@ -104,7 +108,7 @@ public class SimpleDb {
         return _run(sql, Integer.class, Arrays.stream(params).toList());
     }
 
-    public Sql genSql() {
+    public Sql getSql() {
         return new Sql(this);
     }
 
