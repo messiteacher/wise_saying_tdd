@@ -9,6 +9,6 @@ public class RepositoryProvider {
 //        if (AppConfig.isFileDb()) return new WiseSayingFileRepository();
 //        else return new WiseSayingMemRepository();
 
-        return new WiseSayingFileRepository();
+        return new WiseSayingDbRepository();
     }
 }

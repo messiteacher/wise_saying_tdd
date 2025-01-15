@@ -64,6 +64,18 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
         return pageOf(searchedWiseSayings, itemsPerPage, page);
     }
 
+    @Override
+    public void createTable() {
+
+        Util.File.deleteForce(DB_PATH);
+        Util.File.createDir(DB_PATH);
+    }
+
+    @Override
+    public void truncateTable() {
+        Util.File.deleteForce(DB_PATH);
+    }
+
     public Page<WiseSaying> findAll(int itemsPerPage, int page) {
 
         List<WiseSaying> sortedWiseSayings = findAll().stream()
