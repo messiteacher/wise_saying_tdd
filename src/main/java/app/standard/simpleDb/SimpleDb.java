@@ -108,7 +108,7 @@ public class SimpleDb {
         return _run(sql, Integer.class, Arrays.stream(params).toList());
     }
 
-    public Sql getSql() {
+    public Sql genSql() {
         return new Sql(this);
     }
 

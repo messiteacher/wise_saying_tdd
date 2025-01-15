@@ -35,7 +35,7 @@ public class WiseSayingDbRepository {
 
     public WiseSaying save(WiseSaying wiseSaying) {
 
-        Sql sql = simpleDb.getSql();
+        Sql sql = simpleDb.genSql();
         sql.append("INSERT INTO wise_saying")
                 .append("SET content=?,", wiseSaying.getContent())
                 .append("author=?", wiseSaying.getAuthor());
@@ -48,7 +48,7 @@ public class WiseSayingDbRepository {
 
     public Optional<WiseSaying> findById(int id) {
 
-        Sql sql = simpleDb.getSql();
+        Sql sql = simpleDb.genSql();
         sql.append("SELECT *")
                 .append("FROM wise_saying")
                 .append("WHERE id=?", id);
@@ -60,5 +60,15 @@ public class WiseSayingDbRepository {
         }
 
         return Optional.of(wiseSaying);
+    }
+
+    public boolean deleteById(int id) {
+
+        int rst = simpleDb.genSql()
+                .append("DELETE FROM wise_saying")
+                .append("WHERE id=?", id)
+                .delete();
+
+        return rst > 0;
     }
 }
