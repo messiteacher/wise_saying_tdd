@@ -3,16 +3,11 @@ package app.global;
 public class AppConfig {
 
     private static String mode;
-
     private static String dbMode;
 
     static {
         setDevMode();
-        setFileDb();
-    }
-
-    public static void setProdMode() {
-        mode = "prod";
+        setMySQLDbMode();
     }
 
     public static void setDevMode() {
@@ -23,35 +18,23 @@ public class AppConfig {
         mode = "test";
     }
 
-    public static boolean isProdMode() {
-        return mode.equals("prod");
-    }
-
-    public static boolean isDevMode() {
-        return mode.equals("dev");
-    }
-
-    public static boolean isTestMode() {
-        return mode.equals("test");
-    }
-
-    public static void setFileDb() {
+    public static void setFileDbMode() {
         dbMode = "file";
     }
 
-    public static void setMemDbe() {
-        dbMode = "mem";
+    public static void setMySQLDbMode() {
+        dbMode = "mysql";
     }
 
     public static boolean isFileDb() {
         return dbMode.equals("file");
     }
 
-    public static boolean isMemDb() {
-        return dbMode.equals("mem");
+    public static boolean isMysqlDb() {
+        return dbMode.equals("mysql");
     }
 
-    public static String getDBPath() {
-        return "db/" + mode + "/";
+    public static String getDbPath() {
+        return "db/" + mode;
     }
 }

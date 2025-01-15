@@ -26,12 +26,12 @@ public class WiseSayingFileRepositoryTest {
 
     @BeforeEach
     void beforeEach() {
-        Util.File.deleteForce(AppConfig.getDBPath());
+        Util.File.deleteForce(AppConfig.getDbPath());
     }
 
     @AfterEach
     void afterEach() {
-       Util.File.deleteForce(AppConfig.getDBPath());
+       Util.File.deleteForce(AppConfig.getDbPath());
     }
 
     @Test

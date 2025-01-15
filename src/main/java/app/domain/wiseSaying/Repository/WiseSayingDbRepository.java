@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public class WiseSayingDbRepository implements WiseSayingRepository {
 
-    private static final String DB_PATH = AppConfig.getDBPath() + "wiseSaying/";
+    private static final String DB_PATH = AppConfig.getDbPath() + "wiseSaying/";
     private static final String BUILD_PATH = DB_PATH + "/build/data.json";
     private final SimpleDb simpleDb;
 
@@ -115,11 +115,18 @@ public class WiseSayingDbRepository implements WiseSayingRepository {
 
     public int count(String ktype, String kw) {
 
-        long cnt = simpleDb.genSql()
-                .append("SELECT COUNT(*)")
-                .append("FROM wise_saying")
-                .append("WHERE content LIKE CONCAT('%', ?, '%')", kw)
-                .selectLong();
+        Sql sql = simpleDb.genSql();
+
+        sql.append("SELECT *")
+                .append("FROM wise_saying");
+
+        if (ktype.equals("conent")) {
+            sql.append("WHERE content LIKE CONCAT('%', ?, '%')", kw);
+        } else {
+            sql.append("WHERE author LIKE CONCAT('%', ?, '%')", kw);
+        }
+
+        long cnt = sql.selectLong();
 
         return (int) cnt;
     }
@@ -137,13 +144,22 @@ public class WiseSayingDbRepository implements WiseSayingRepository {
 
         int totalItems = count(ktype, kw);
 
-        List<WiseSaying> content = simpleDb.genSql()
-                .append("SELECT *")
-                .append("FROM wise_saying")
-                .append("WHERE content LIKE CONCAT('%', ?, '%')", kw)
-                .append("ORDER BY id DESC")
+        Sql sql = simpleDb.genSql();
+
+        sql.append("SELECT *")
+                .append("FROM wise_saying");
+
+        if (ktype.equals("conent")) {
+            sql.append("WHERE content LIKE CONCAT('%', ?, '%')", kw);
+        } else {
+            sql.append("WHERE author LIKE CONCAT('%', ?, '%')", kw);
+        }
+
+        sql.append("ORDER BY id DESC")
                 .append("LIMIT ?, ?", (long) (page - 1) * itemsPerPage, itemsPerPage)
                 .selectRows(WiseSaying.class);
+
+        List<WiseSaying> content = sql.selectRows(WiseSaying.class);
 
         return new Page<>(content, totalItems, itemsPerPage, page);
     }
